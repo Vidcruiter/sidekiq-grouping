@@ -44,17 +44,3 @@ module Sidekiq
     end
   end
 end
-
-Sidekiq.configure_client do |config|
-  config.client_middleware do |chain|
-    chain.add Sidekiq::Grouping::Middleware
-  end
-end
-
-Sidekiq.configure_server do |config|
-  config.client_middleware do |chain|
-    chain.add Sidekiq::Grouping::Middleware
-  end
-end
-
-Sidekiq::Grouping.start! if Sidekiq.server?
